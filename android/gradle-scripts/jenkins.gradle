@@ -1,0 +1,10 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.fowlie:gradle-jenkins-test:+'
+    }
+}
+
+apply plugin: com.github.fowlie.GradleJenkinsTestPlugin

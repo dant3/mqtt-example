@@ -1,0 +1,20 @@
+allprojects  {
+    apply plugin: 'maven'
+}
+
+subprojects {
+    apply plugin: 'pmd'
+    apply plugin: 'findbugs'
+
+    repositories {
+//        maven { url "http://repo.spb.unison.com/content/groups/Mirrors/" }
+    }
+}
+
+ext {
+    webrtcHash = 'd7da120b40f7a8a8357f23cf6b49aa03f67c1cf6'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2.1'
+}

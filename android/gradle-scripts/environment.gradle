@@ -1,0 +1,33 @@
+project.extensions.create("env", EnvAccessor)
+
+class EnvAccessor {
+    def getVar(String varName) { EnvVar.get(varName) }
+}
+
+class EnvVar {
+    final String name;
+    final String value;
+
+    private EnvVar(String name, String value) {
+        this.name = name;
+        this.value = value;
+    }
+
+    boolean isDefined() {
+        return value != null;
+    }
+
+    String getOrElse(String defaultValue) {
+        if (isDefined()) {
+            value
+        } else {
+            defaultValue
+        }
+    }
+
+    String toString() { "Env[$name]: $value" }
+
+    static EnvVar get(String name) {
+        return new EnvVar(name, System.getenv(name))
+    }
+}

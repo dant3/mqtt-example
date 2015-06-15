@@ -1,0 +1,95 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.1.3'
+        classpath 'jp.leafytree.gradle:gradle-android-scala-plugin:1.4'
+    }
+}
+
+repositories {
+    jcenter()
+    //maven { name "JitPack.io"; url "https://jitpack.io"; }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'jp.leafytree.android-scala'
+
+android {
+    compileSdkVersion 'android-22'
+    buildToolsVersion '22.0.1'
+
+    defaultConfig {
+        targetSdkVersion 22
+        versionCode 1
+        versionName '1.0'
+        multiDexEnabled true
+    }
+
+    dexOptions {
+        preDexLibraries false
+        javaMaxHeapSize '2g'
+    }
+
+    productFlavors {
+        dev {
+            minSdkVersion 21 // To reduce compilation time
+        }
+
+        prod {
+            minSdkVersion 14
+        }
+    }
+}
+
+dependencies {
+    // ui
+    compile 'com.android.support:multidex:1.0.1'
+    compile androidSupportLibraries("22.0.0")
+
+    compile 'com.balysv.materialmenu:material-menu-toolbar:1.5.0'
+    compile 'com.squareup.picasso:picasso:2.4.0'
+
+    // lang
+    compile 'org.scala-lang:scala-library:2.11.6'
+    compile 'org.apache.commons:commons-lang3:3.1'
+    // sql
+    compile 'com.typesafe.slick:slick_2.11:2.1.0'
+    compile 'org.sqldroid:sqldroid:1.0.3'
+    // logger
+    compile('com.github.tony19:logback-android-classic:1.1.1-3') {
+        exclude(group: 'commons-logging', module: 'commons-logging')
+    }
+    // xmpp
+    compile smack('4.1.0')
+    // reactive
+    compile rxJava('0.24.0')
+    compile 'org.fusesource.mqtt-client:mqtt-client:1.10'
+}
+
+configurations {
+    compile {
+        exclude group:'xpp3', module:'xpp3'
+    }
+}
+
+def androidSupportLibraries(version) {[
+    "com.android.support:support-v4:$version",
+    "com.android.support:appcompat-v7:$version",
+    "com.android.support:recyclerview-v7:$version"
+]}
+
+def smack(version) {[
+    "org.igniterealtime.smack:smack-android:$version",
+    "org.igniterealtime.smack:smack-im:$version",
+    "org.igniterealtime.smack:smack-extensions:$version",
+    "org.igniterealtime.smack:smack-tcp:$version",
+    "org.igniterealtime.smack:smack-debug-slf4j:$version"
+]}
+
+def rxJava(version) {[
+    "io.reactivex:rxscala_2.11:$version",
+    "io.reactivex:rxandroid:$version"
+]}

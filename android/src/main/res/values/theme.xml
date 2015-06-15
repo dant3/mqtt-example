@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- inherit from the material theme -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Main theme colors -->
+        <!--<item name="android:actionBarStyle">@style/ActionBar</item>-->
+        <!--<item name="android:actionBarTabTextStyle">@style/ActionBarTabTextStyle</item>-->
+        <!--<item name="actionBarStyle">@style/ActionBar</item>-->
+        <!--<item name="actionBarTabTextStyle">@style/ActionBarTabTextStyle</item>-->
+
+        <!-- color palette setup -->
+        <item name="colorPrimary">@color/primary</item>
+        <!-- colorPrimaryDark is used for the status bar -->
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <!-- colorAccent is used as the default value for colorControlActivated
+             which is used to tint widgets -->
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:textColorPrimary">@color/primary_text</item>
+        <item name="android:textColorSecondary">@color/secondary_text</item>
+        <item name="android:divider">@color/divider</item>
+
+        <item name="colorControlNormal">@color/secondary_text</item>
+        <item name="colorControlActivated">@color/accent</item>
+        <item name="colorControlHighlight">@color/ripple_material_light</item>
+        <item name="colorSwitchThumbNormal">?attr/colorAccent</item>
+        <!-- You can also set colorControlNormal
+             colorControlActivated
+             colorControlHighlight & colorSwitchThumbNormal,
+             navigationBarColor - for soft buttons on bottom,
+             windowBackground - for default background color,
+              -->
+    </style>
+
+    <!-- general styles for the action bar -->
+    <style name="ActionBar"
+           parent="@style/Widget.AppCompat.ActionBar">
+        <item name="android:titleTextStyle">@style/ActionBarTitleTextStyle</item>
+
+        <!-- Support library compatibility -->
+        <item name="titleTextStyle">@style/ActionBarTitleTextStyle</item>
+    </style>
+
+    <!-- action bar title text -->
+    <style name="ActionBarTitleTextStyle"
+           parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+
+    <!-- action bar tab text -->
+    <style name="ActionBarTabTextStyle"
+           parent="@style/Widget.AppCompat.ActionBar.TabText">
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+</resources>

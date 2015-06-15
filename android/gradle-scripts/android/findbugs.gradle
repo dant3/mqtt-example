@@ -1,0 +1,20 @@
+afterEvaluate {
+    project.android.applicationVariants.all { variant ->
+        def srcName = variant.getName()
+
+        def newTask = tasks.create(name: "findbugs${srcName.capitalize()}",
+                type: FindBugs, dependsOn: variant.javaCompile) {
+            description "Run findbugs for $srcName sources"
+            group 'verification'
+
+            classes = files(variant.javaCompile.destinationDir)
+            source = files(variant.javaCompile.source)
+            classpath = files(variant.javaCompile.classpath)
+        }
+
+        if (srcName == "debug") {
+            task findbugsMain(dependsOn: newTask)
+            check.dependsOn findbugsMain
+        }
+    }
+}

@@ -1,0 +1,6 @@
+DependencyHandler.metaClass.smackComponent = { String componentName, String smackVersion ->
+    [group: 'com.unison.smack', name: componentName, version:smackVersion, changing: false]
+}
+DependencyHandler.metaClass.smackTests = { String smackVersion ->
+    [group: 'com.unison.smack', name: 'smack-core', version:smackVersion, classifier: 'tests', changing: false]
+}

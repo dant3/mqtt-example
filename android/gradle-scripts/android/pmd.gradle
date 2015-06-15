@@ -1,0 +1,16 @@
+project.android.applicationVariants.all { variant ->
+    def srcName = variant.getName()
+
+    def pmdTask = tasks.create(name: "pmd${srcName.capitalize()}",
+                               type: Pmd, dependsOn: "pre${srcName.capitalize()}Build") {
+        description "Run pmd for $srcName sources"
+        group 'verification'
+        source = files(variant.sourceSets.collect({ it.javaDirectories }).flatten())
+        excludes = ["R", "BuildConfig", "Manifest"]
+    }
+
+    if (srcName == "debug") {
+        task pmdMain(dependsOn: pmdTask)
+        check.dependsOn pmdMain
+    }
+}

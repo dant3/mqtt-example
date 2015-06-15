@@ -1,0 +1,20 @@
+apply plugin: 'maven'
+apply plugin: 'scala'
+apply plugin: 'application'
+
+mainClassName = "Main"
+
+repositories {
+    mavenCentral()
+    maven { url 'http://dl.bintray.com/andsel/maven/' }
+}
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.11.6'
+    compile 'org.fusesource.mqtt-client:mqtt-client:1.10'
+    compile 'io.reactivex:rxscala_2.11:0.25.0'
+}
+
+tasks.withType(ScalaCompile) {
+    scalaCompileOptions.useAnt = false
+}
